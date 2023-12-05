@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>visited;
+void DFS(vector<int>list[],int s){
+    
+    if(visited[s]==1)
+    return ;
+    
+    visited[s]=1;
+    cout<<s<<" ";
+    
+    for(auto child:list[s]){
+        
+        DFS(list,child);
+    }
+    
+    
+    
+    
+}
+int main(){
+    int v,e;
+    
+    cin>>v>>e;
+    
+    vector<int>list[v];
+    
+    for(int i=0;i<e;i++){
+        int s,d;
+        cin>>s>>d;
+        list[s].emplace_back(d);
+        list[d].emplace_back(s);
+    }
+    
+    for(int i=0;i<v;i++){
+        cout<<i<<"---";
+        for(auto j:list[i]){
+            cout<<j<<" ";
+        }
+        cout<<endl;
+        
+    }
+    int s;
+  cin>>s;
+  visited.resize(v,s);
+    DFS(list,0);
+    
+    
+}
