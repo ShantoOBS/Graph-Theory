@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void print(vector<int>adj[],int v){
+    
+    for(int i=0;i<v;i++){
+        cout<<i<<"---";
+        for(auto u:adj[i]){
+            
+            cout<<u<<",";
+            
+        }
+        cout<<endl;
+    }
+}
+
+void dfs(int node,int vis[], stack<int> &st,
+	         vector<int> adj[]) {
+		vis[node] = 1;
+		for (auto it : adj[node]) {
+			if (!vis[it]) dfs(it, vis, st, adj);
+		}
+		st.push(node);
+	}
+	
+	
+	
+	
+
+
+int main(){
+    
+    int v,e;
+    cin>>v>>e;
+    
+    vector<int>adj[v];
+    
+    for(int i=0;i<e;i++){
+        int s,d;
+        cin>>s>>d;
+        
+        adj[s].emplace_back(d);
+        
+    }
+    
+     print(adj,v);
+    
+     int vis[v] = {0};
+     
+     for(auto i:vis){
+         cout<<i<<" ";
+     }
+		stack<int> st;
+		for (int i = 0; i < v; i++) {
+			if (!vis[i]) {
+				dfs(i, vis, st, adj);
+			}
+		}
+
+		vector<int> ans;
+		while (!st.empty()) {
+			ans.push_back(st.top());
+			st.pop();
+		}
+		for(auto i:ans){
+		    cout<<i<<" ";
+		}
+    
+    
+    
+    
+}
