@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>visited;
+
+void dfs(vector<int>arr[],int s){
+
+    if(visited[s]==1)
+        return ;
+     visited[s]=1;
+    //cout<<s<<" ";
+      for(auto child:arr[s]){
+          dfs(arr,child);
+      }
+
+
+}
+
+int main()
+{
+    int v,e;
+    cin>>v>>e;
+
+    vector<int>arr[v];
+
+    for(int i=0;i<e;i++){
+
+     int s,d;
+    cin>>s>>d;
+
+    arr[s].emplace_back(d);
+    arr[d].emplace_back(s);
+
+    }
+
+    for(int i=0;i<v;i++){
+        cout<<i<<"---";
+
+        for(auto j:arr[i]){
+            cout<<j<<" ";
+        }
+        cout<<endl;
+    }
+
+    int c=0;
+   visited.resize(v,0);
+
+   for(int i=0;i<v;i++){
+
+        if(visited[i]!=1){
+            dfs(arr,i);
+            c++;
+        }
+
+   }
+  cout<<c<<endl;
+
+}
+
