@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool bipertite(vector<int>adj[],vector<int>color,int v){
+
+   for(int i=0;i<v;i++){
+
+    for(auto node:adj[i]){
+
+        if(color[node]==-1){
+            color[node]=!color[i];
+        }
+        else if(color[node]==color[i]){
+
+            return false;
+        }
+    }
+
+
+
+   }
+
+
+ return true;
+
+
+}
+
+int main(){
+
+   int v,e;
+   cin>>v>>e;
+
+   vector<int>adj[v];
+
+   for(int i=0;i<e;i++){
+    int s,d;
+    cin>>s>>d;
+
+    adj[s].emplace_back(d);
+    adj[d].emplace_back(s);
+
+   }
+
+   vector<int>color(v,-1);
+
+   cout<<bipertite(adj,color,v);
+
+
+
+
+}
